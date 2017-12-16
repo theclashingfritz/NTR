@@ -13,13 +13,11 @@ NTR_CONFIG* ntrConfig;
 FS_archive sdmcArchive = { 0x9, (FS_path){ PATH_EMPTY, 1, (u8*)"" } };
 Handle fsUserHandle = 0;
 
-
 u32 StartMode = 0;
 u32 IoBasePad ;
 u32 IoBaseLcd ;
 u32 IoBasePdc ;
 u32 ShowDbgFunc;
-
 
 RT_HOOK HomeFSReadHook;
 typedef u32(*FSReadTypeDef) (u32 a1, u32 a2, u32 a3, u32 a4, u32 buffer, u32 size);
@@ -29,7 +27,6 @@ RT_HOOK HomeCardUpdateInitHook;
 u32 NTRMenuHotkey = 0x0C00;
 u32 ScreenshotHotkey = 0;
 
-
 #define STACK_SIZE 0x4000
 
 u32 isInDebugMode() {
@@ -38,8 +35,6 @@ u32 isInDebugMode() {
 	}
 	return 0;
 }
-
-
 
 u32 initValuesFromFIRM() {
 	u32 kversion = *(unsigned int *)0x1FF80000;
@@ -125,8 +120,6 @@ showDbg("fatal. LR: %08x", lr, 0);
 releaseVideo();
 }
 
-
-
 void viewFile(FS_archive arc, u8 * path) {
 	u8 buf[0x5000];
 	u32 off = 0;
@@ -192,13 +185,11 @@ void fileManager() {
 	FSUSER_CloseArchive(fsUserHandle, &arc);
 }
 
-
 void checkExitFlag() {
 	if (g_nsConfig->exitFlag) {
 		svc_exitThread();
 	}
 }
-
 
 u32 HomeFSReadCallback(u32 a1, u32 a2, u32 a3, u32 a4, u32 buffer, u32 size) {
 	u32 ret;
@@ -246,8 +237,6 @@ void magicKillProcess(u32 pid) {
 	svc_closeHandle(hProcess);
 }
 
-
-
 void do_screen_shoot();
 
 int cpuClockLockValue = -1;
@@ -262,7 +251,6 @@ void lockCpuClock() {
 void setCpuClockLock(int v) {
 	cpuClockLockValue = v;
 }
-
 
 RT_HOOK HomeSetMemorySizeHook;
 typedef u32(*SetMemorySizeTypedef) (u32);
@@ -323,9 +311,6 @@ void threadStart() {
 	}
 }
 
-
-
-
 void initConfigureMemory() {
 	u32 ret;
 	u32 outAddr;
@@ -347,8 +332,6 @@ void initConfigureMemory() {
 	
 }
 
-
-
 void _ReturnToUser();
 
 void startupFromInject() {
@@ -357,7 +340,6 @@ void startupFromInject() {
 	disp(100, 0x10000ff);
 	svc_exitThread(0);
 }
-
 
 extern int _BootArgs[];
 

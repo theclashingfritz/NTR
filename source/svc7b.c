@@ -135,8 +135,6 @@ void keDoKernelHax() {
 	InvalidateEntireDataCache();
 }
 
-
-
 void remotePlayKernelCallback();
 
 void kernelCallback(u32 msr) {

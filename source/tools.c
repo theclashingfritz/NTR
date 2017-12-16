@@ -1,4 +1,3 @@
-
 #include "global.h"
 
 #define O_RDONLY 1
@@ -6,13 +5,7 @@
 #define O_RDWR   3
 #define O_CREAT  4
 
-
-
 u8 *image_buf = NULL;
-
-
-
-
 
 int sdf_open(char *filename, int mode)
 {
@@ -69,7 +62,6 @@ int sdf_close(int fd)
 
 /**************************************************************/
 
-
 struct BitmapHeader
 {
 	char id[2];
@@ -89,7 +81,6 @@ struct BitmapHeader
 	u32  impcolors;
 } __attribute__((packed));
 
-
 void put_le32(void *dst, u32 val)
 {
 	u8 *dp = (u8*)dst;
@@ -107,7 +98,6 @@ void put_le16(void *dst, u32 val)
 	dp[0] = val & 0xff;
 	dp[1] = (val >> 8) & 0xff;
 }
-
 
 void bmp_write(u8 *bmp_buf, int width, int height, char *name)
 {
@@ -139,7 +129,6 @@ void bmp_write(u8 *bmp_buf, int width, int height, char *name)
 		sdf_close(fd);
 	}
 }
-
 
 void rev_image(u8 *dst, int width, int height, u8 *src, int src_pitch, int format)
 {
@@ -196,7 +185,6 @@ void rev_image(u8 *dst, int width, int height, u8 *src, int src_pitch, int forma
 	}
 }
 
-
 int bmp_index;
 
 int get_file_index(void)
@@ -219,7 +207,6 @@ int get_file_index(void)
 	return id;
 }
 
-
 void allocImageBuf() {
 	if (image_buf) {
 		return;
@@ -228,7 +215,6 @@ void allocImageBuf() {
 	nsDbgPrint("    out_addr: %08x", out_addr);
 	image_buf = (u8*)out_addr;
 }
-
 
 void do_screen_shoot(void)
 {
@@ -365,7 +351,6 @@ u32 loadSaveVRAM(int fd, int isLoad) {
 	return 0;
 }
 
-
 u32 saveRegion(Handle hProcess, u32 addr, int fd, u32 offsetInFile, u32 size) {
 	u32 off = 0;
 	u32 currentRead;
@@ -486,8 +471,6 @@ u32 instantSave(int id, int isLoad) {
 	return 0;
 }
 
-
-
 u32 instantSaveMenu() {
 	if (ntrConfig->memMode != NTR_MEMMODE_DEFAULT) {
 		showMsg("RTS is not compatitable with extended memory mode.");
@@ -530,8 +513,6 @@ u32 instantSaveMenu() {
 	return 1;
 }
 
-
-
 u32 cpuClockUi() {
 	u8 buf[200];
 	acquireVideo();
@@ -559,7 +540,6 @@ u32 cpuClockUi() {
 	releaseVideo();
 	return 0;
 }
-
 
 void plgDoReboot() {
 	Handle hNSS = 0;
@@ -603,7 +583,6 @@ void plgDoPowerOff() {
 
 }
 
-
 u32 powerMenu() {
 	acquireVideo();
 	u8* entries[8];
@@ -639,8 +618,6 @@ u32 gspPatchAddr = 0;
 int bklightValue = 50;
 
 int checkBacklightSupported() {
-
-	
 	Handle hGSPProcess = 0;
 	u32 ret;
 	u8 buf[16] = { 0 };
@@ -678,7 +655,6 @@ requirePatch:
 	return 1;
 }
 
-
 void reliableWriteU8(vu8* addr, u8 data) {
 	while (1) {
 		*addr = data;
@@ -704,7 +680,6 @@ int patchGSP() {
 	}
 	return ret;
 }
-
 
 void updateBklight() {
 	u32 t;
@@ -808,7 +783,6 @@ u32 nightShiftUi() {
 int screenshotMain() {
 	u32 retv;
 
-
 	nsDbgPrint("initializing screenshot plugin\n");
 	plgRegisterMenuEntry(1, plgTranslate("Take Screenshot"), takeScreenShot);
 	plgRegisterMenuEntry(1, plgTranslate("Real-Time Save (Experimental)"), instantSaveMenu);
@@ -828,8 +802,3 @@ int screenshotMain() {
 	plgRegisterMenuEntry(1, plgTranslate("Screen Filter"), nightShiftUi);
 
 }
-
-
-
-
-

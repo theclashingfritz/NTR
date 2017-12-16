@@ -3,7 +3,6 @@
 #include "math.h"
 #include "3dstypes.h"
 
-
 void write_byte(u32 address, u8 byte);
 void write_word(u32 address, u32 word);
 void write_color(u32 address, u8 r, u8 g, u8 b);

@@ -501,8 +501,6 @@ u32 svc_RunCallback(Handle hProcess, u32* startInfo) {
 	return ((svc_RunTypeDef)((void*)(svc_RunHook.callCode)))(hProcess, startInfo);
 }
 
-
-
 void initFromInjectPM() {
 	u32 ret;
 
@@ -552,7 +550,6 @@ u32 plgStartPluginLoad() {
 	g_plgInfo->arm11BinStart = arm11BinStart;
 	g_plgInfo->arm11BinSize = arm11BinSize;
 }
-
 
 char* plgTranslate(char* origText) {
 	if (plgTranslateCallback) {
@@ -686,9 +683,6 @@ void startHomePlugin() {
 	}
 }
 
-
-
-
 void plgInitFromInjectHOME() {
 	u32 base = plgPoolStart;
 	u32 ret;
@@ -739,7 +733,6 @@ void plgInitFromInjectHOME() {
 	injectPM();
 }
 
-
 u32 plgSearchReverse(u32 endAddr, u32 startAddr, u32 pat) {
 	if (endAddr == 0) {
 		return 0;
@@ -785,7 +778,6 @@ RT_HOOK SetBufferSwapHook;
 
 typedef u32(*SetBufferSwapTypedef) (u32 isDisplay1, u32 a2, u32 addr, u32 addrB, u32 width, u32 a6, u32 a7);
 
-
 /*
 u32 plgNightShiftFramebufferLevel2(u32 addr, u32 stride, u32 height, u32 format) {
 	format &= 0x0f;
@@ -813,8 +805,6 @@ u32 plgNightShiftFramebufferLevel2(u32 addr, u32 stride, u32 height, u32 format)
 	return 0;
 }
 */
-
-
 
 u32 plgNightShiftFramebuffer(u32 addr, u32 stride, u32 height, u32 format);
 
@@ -931,8 +921,6 @@ void initFromInjectGame() {
 		((funcType)(g_plgInfo->plgBufferPtr[i]))();
 	}
 }
-
-
 
 u32 plgRequestTempBuffer(u32 size) {
 

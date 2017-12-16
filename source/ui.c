@@ -8,9 +8,6 @@ u32 bottomFrameBuffer = 0x1F000000;
 u32 allocFrameBuffer = 0;
 u32 hGSPProcess = 0;
 
-
-
-
 int builtinDrawString(u8* str, int x, int y, char r, char g, char b, int newLine) {
 	int len = strlen(str);
 	int i, chWidth, currentX = x, totalLen = 0;
@@ -47,7 +44,6 @@ void print(char* s, int x, int y, char r, char g, char b){
 	drawString(s, x, y, r, g, b, 1);
 }
 
-
 u32 getPhysAddr(u32 vaddr) {
 	if(vaddr >= 0x14000000 && vaddr<0x1c000000)return vaddr + 0x0c000000;//LINEAR memory
 	if(vaddr >= 0x30000000 && vaddr<0x40000000)return vaddr - 0x10000000;//Only available under system-version v8.0 for certain processes, see here: http://3dbrew.org/wiki/SVC#enum_MemoryOperation
@@ -65,7 +61,6 @@ u32 initDirectScreenAccess() {
 	allowDirectScreenAccess = 1;
 
 	return 0;
-
 }
 
 u32 controlVideo(u32 cmd, u32 arg1, u32 arg2, u32 arg3) {
@@ -90,7 +85,6 @@ u32 controlVideo(u32 cmd, u32 arg1, u32 arg2, u32 arg3) {
 	}
 }
 
-
 void debounceKey() {
 	vu32 t;
 	for (t = 0; t < 0x00100000; t++) {
@@ -113,7 +107,6 @@ void mdelay(u32 m) {
 }
 
 void updateScreen() {
-	
 	*(vu32*)(IoBasePdc + 0x568) = getPhysAddr(bottomFrameBuffer);
 	*(vu32*)(IoBasePdc + 0x56C) = getPhysAddr(bottomFrameBuffer);
 	*(vu32*)(IoBasePdc + 0x570) = 0x00080301;
@@ -143,7 +136,7 @@ s32 showMenuEx(u8* title, u32 entryCount, u8* captions[], u8* descriptions[],  u
 		blank(0, 0, 320, 240);
 		pos = 10;
 		print(title, x, pos, 255, 0, 0);
-		print("http://44670.org/ntr", 10, 220, 0, 0, 255);
+		print("OA: http://44670.org/ntr NA:https://github.com/theclashingfritz", 10, 220, 0, 0, 255);
 		pos += 20;
 		drawStart = (select / maxCaptions) * maxCaptions;
 		drawEnd = drawStart + maxCaptions;
@@ -229,7 +222,6 @@ void showDbg(u8* fmt, u32 v1, u32 v2) {
 
 extern PLGLOADER_INFO *g_plgInfo;
 u32 decideBottomFrameBufferAddr() {
-	
 	if (g_plgInfo) {
 		u32 tidLow = g_plgInfo->tid[0];
 		if ((tidLow == 0x00125500) || (tidLow == 0x000D6E00) || (tidLow == 0x00125600)) {
@@ -292,7 +284,6 @@ u32 getKey() {
 	return (*(vu32*)(IoBasePad) ^ 0xFFF) & 0xFFF;
 }
 
-
 int confirmKey(int keyCode, int time) {
 	vu32 i;
 	for (i = 0; i < time; i++) {
@@ -324,7 +315,6 @@ u32 waitKey() {
 
 	return key;
 }
-
 
 void blinkColor(u32 c){
 	vu32 t;
