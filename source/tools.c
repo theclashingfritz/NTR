@@ -827,10 +827,7 @@ int screenshotMain() {
 	}
 
 	plgRegisterMenuEntry(1, plgTranslate("Screen Filter"), nightShiftUi);
+	
+    //Does nothing.
+	return 0;
 }
-
-
-
-
-
->>>>>>> 02a748eac5758971b64548b45e5701be38b329a1
