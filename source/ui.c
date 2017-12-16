@@ -134,13 +134,8 @@ s32 showMenuEx(u8* title, u32 entryCount, u8* captions[], u8* descriptions[],  u
 	while(1) {
 		blank(0, 0, 320, 240);
 		pos = 10;
-<<<<<<< HEAD
 		print(title, x, pos, 255, 0, 0);
 		print("OA: http://44670.org/ntr NA:https://github.com/theclashingfritz", 10, 220, 0, 0, 255);
-=======
-		print((char*) title, x, pos, 255, 0, 0);
-		print("http://44670.org/ntr", 10, 220, 0, 0, 255);
->>>>>>> 02a748eac5758971b64548b45e5701be38b329a1
 		pos += 20;
 		drawStart = (select / maxCaptions) * maxCaptions;
 		drawEnd = drawStart + maxCaptions;

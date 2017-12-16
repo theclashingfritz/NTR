@@ -7,12 +7,9 @@
 
 u8 *image_buf = NULL;
 
-<<<<<<< HEAD
-=======
 void disp(u32 t, u32 cl);
 void print(char* s, int x, int y, char r, char g, char b);
 
->>>>>>> 02a748eac5758971b64548b45e5701be38b329a1
 int sdf_open(char *filename, int mode)
 {
 	FS_archive sdmcArchive = { 0x9, (FS_path){ PATH_EMPTY, 1, (u8*)"" } };
@@ -809,15 +806,11 @@ u32 nightShiftUi() {
 	return 1;
 }
 
-<<<<<<< HEAD
-	nsDbgPrint("initializing screenshot plugin\n");
-=======
 int screenshotMain() {
 	//Unused
 	//u32 retv;
 
 	nsDbgPrint((const char*) "initializing screenshot plugin\n");
->>>>>>> 02a748eac5758971b64548b45e5701be38b329a1
 	plgRegisterMenuEntry(1, plgTranslate("Take Screenshot"), takeScreenShot);
 	plgRegisterMenuEntry(1, plgTranslate("Real-Time Save (Experimental)"), instantSaveMenu);
 
@@ -834,12 +827,6 @@ int screenshotMain() {
 	}
 
 	plgRegisterMenuEntry(1, plgTranslate("Screen Filter"), nightShiftUi);
-
-<<<<<<< HEAD
-}
-=======
-	//Does nothing.
-	return 0;
 }
 
 
